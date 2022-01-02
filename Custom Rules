@@ -1,0 +1,19 @@
+step 1
+vi prometheus_rule.yml
+
+add this code to the file
+
+groups:
+  - name: customrule1
+    rules:
+  - record: node_memory_free_percent
+    expr: 100 - (100 * node_memory_MemFree_bytes / node_memory_MemTotal_bytes)
+
+step 2
+you can check for the syntax rule by using       
+      ./promtool check rule prometheus_rule.yml
+
+step 3
+vi prometheus.yml
+  add this under the rules column
+  - "prometheus_rule.yml"
