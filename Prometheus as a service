@@ -12,4 +12,8 @@ ExecStart=/home/ec2-user/prometheus-2.32.1.linux-amd64/prometheus --config.file=
 
 [Install]
 WantedBy=multi-user.target
-~                           
+
+
+
+
+Use the same for node exporter  and grafana too
