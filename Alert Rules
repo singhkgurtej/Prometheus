@@ -1,0 +1,31 @@
+step 1
+sudo vi /usr/local/bin/alertmanager/alertmanager.yml
+add this code
+
+route:
+    group_by: [Alertname]
+    group_interval: 30s
+    repeat_interval: 30s
+    # Send all notifications to me.
+    receiver: email-me
+receivers:
+- name: email-me
+  email_configs:
+  - send_resolved: true
+    to: mail_id@gmail.com
+    from: mail_id@gmail.com
+    smarthost: smtp.gmail.com:587
+    auth_username: "mail_id@gmail.com"
+    auth_identity: "mail_id@gmail.com"
+    auth_password: "****"
+    
+ step 2
+ /amtool check-config alertmanager.yml
+ 
+ sudo service alertmanager restart
+sudo service alertmanager status
+
+step 3
+vi prometheus.yml
+add this to alerting column
+   - localhost:9093   (uncomment or add ip+port of alert manager is runnning on a other machine)
